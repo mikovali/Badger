@@ -21,6 +21,7 @@ branches:
   only:
     - master
     - dev
+    - mutate
 
 before_install:
   - gradle :wrapper --configure-on-demand
