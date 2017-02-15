@@ -28,7 +28,7 @@ before_script:
 
 env:
   matrix:
-    - ANDROID_SDKS=android-19,sysimg-25  ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-25,sysimg-25  ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=android-23,sysimg-23  ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
 
 before_install:
