@@ -7,10 +7,12 @@ android:
     - platform-tools
     - build-tools-25.0.1
     - android-25
+    - android-24
     - android-23
     - extra-android-support
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-25
+    - sys-img-armeabi-v7a-android-24
     - sys-img-armeabi-v7a-android-23
 
 git:
@@ -28,7 +30,7 @@ before_script:
 
 env:
   matrix:
-    - ANDROID_SDKS=android-25,sysimg-25  ANDROID_TARGET=android-25  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-24,sysimg-24  ANDROID_TARGET=android-24  ANDROID_ABI=armeabi-v7a
     - ANDROID_SDKS=android-23,sysimg-23  ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
 
 before_install:
