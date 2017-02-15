@@ -22,5 +22,6 @@ android {
 
 dependencies {
     compile "com.android.support:appcompat-v7:$androidSupportVersion"
+    compile "com.android.support:design:$androidSupportVersion"
     compile project(':library')
 }

@@ -17,6 +17,8 @@
 package berlin.volders.badger.example;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
@@ -33,6 +35,8 @@ public class BadgerActivity extends AppCompatActivity {
     CountBadge.Factory squareFactory;
     CountBadge.Factory circleFactory;
 
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,16 @@ public class BadgerActivity extends AppCompatActivity {
         ovalFactory = new CountBadge.Factory(this, BadgeShape.oval(1f, 2f, Gravity.BOTTOM));
         squareFactory = new CountBadge.Factory(this, BadgeShape.square(1f, Gravity.NO_GRAVITY, .5f));
         circleFactory = new CountBadge.Factory(this, BadgeShape.circle(.5f, Gravity.END | Gravity.TOP));
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        clearBottomNavigationCounters();
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return onOptionsItemSelected(item);
+            }
+        });
     }
 
     @Override
@@ -69,5 +83,13 @@ public class BadgerActivity extends AppCompatActivity {
 
     public void resetBadges(View view) {
         invalidateOptionsMenu();
+        clearBottomNavigationCounters();
+    }
+
+    void clearBottomNavigationCounters() {
+        Menu menu = bottomNavigationView.getMenu();
+        Badger.sett(menu.findItem(R.id.action_oval), ovalFactory).setCount(0);
+        Badger.sett(menu.findItem(R.id.action_square), squareFactory).setCount(0);
+        Badger.sett(menu.findItem(R.id.action_circle), circleFactory).setCount(0);
     }
 }
