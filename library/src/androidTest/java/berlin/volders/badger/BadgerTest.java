@@ -43,6 +43,7 @@ public class BadgerTest {
         Badger<TestBadgeDrawable> badger = Badger.sett(drawable, factory);
 
         assertBadged(badger.drawable, badger.badge, drawable);
+        assertBadged(badger.drawable.mutate(), badger.badge, drawable);
     }
 
     @Test
@@ -53,6 +54,7 @@ public class BadgerTest {
         Badger<TestBadgeDrawable> badger = Badger.sett(layer, factory);
 
         assertBadged(badger.drawable, badger.badge, drawables);
+        assertBadged(badger.drawable.mutate(), badger.badge, drawables);
     }
 
     @Test(expected = IllegalStateException.class)
@@ -72,6 +74,7 @@ public class BadgerTest {
         Badger<TestBadgeDrawable> badger = Badger.sett(layer, factory);
 
         assertBadged(badger.drawable, badger.badge, drawables);
+        assertBadged(badger.drawable.mutate(), badger.badge, drawables);
     }
 
     @Test
@@ -84,6 +87,7 @@ public class BadgerTest {
         TestBadgeDrawable badge = Badger.sett(menuItem, factory);
 
         assertBadged(menuItem.getIcon(), badge, drawables);
+        assertBadged(menuItem.getIcon().mutate(), badge, drawables);
     }
 
     @Test
@@ -96,15 +100,7 @@ public class BadgerTest {
         TestBadgeDrawable badge = Badger.sett(imageView, factory);
 
         assertBadged(imageView.getDrawable(), badge, drawables);
-    }
-
-    @Test
-    public void sett_mutateDrawable() {
-        Drawable drawable = new TestDrawable();
-
-        Badger<TestBadgeDrawable> badger = Badger.sett(drawable, factory);
-
-        assertBadged(badger.drawable.mutate(), badger.badge, drawable);
+        assertBadged(imageView.getDrawable().mutate(), badge, drawables);
     }
 
     void assertBadged(Drawable drawable, TestBadgeDrawable badge, Drawable... drawables) {
